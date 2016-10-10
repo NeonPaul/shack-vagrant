@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   # node debugging with VS Code
   config.vm.network "forwarded_port", host: 5858, guest: 5858
   # mysql
-  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  # config.vm.network "forwarded_port", guest: 3306, host: 3306
   # server
   config.vm.network "forwarded_port", guest: 3000, host: 4567
   config.vm.synced_folder "../shack", "/home/vagrant/shack"

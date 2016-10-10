@@ -7,6 +7,7 @@ echo "export JWT_SECRET=secret" >> /home/vagrant/vars.sh
 source /home/vagrant/vars.sh
 
 # Install git
+sudo apt-get update
 sudo apt-get install -y -qq git
 
 # Install mysql
@@ -24,7 +25,7 @@ sudo apt-get install -y -qq mysql-server-5.5 mysql-client
 #mysql_secure_installation
 
 # configure mysql
-mysql -u $DB_USER -p$DB_PASS shack < /home/vagrant/shack.sql
+mysql -u $DB_USER -p$DB_PASS < /home/vagrant/shack.sql
 
 # install node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
