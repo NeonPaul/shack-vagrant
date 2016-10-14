@@ -1,11 +1,3 @@
-# Set environment variables
-echo "export OPENSHIFT_MYSQL_DB_HOST=localhost" > /home/vagrant/vars.sh
-echo "export DB_USER=root" >> /home/vagrant/vars.sh
-echo "export DB_PASS=password" >> /home/vagrant/vars.sh
-echo "export NODE_IP=0.0.0.0" >> /home/vagrant/vars.sh
-echo "export JWT_SECRET=secret" >> /home/vagrant/vars.sh
-source /home/vagrant/vars.sh
-
 # Install git
 sudo apt-get update
 sudo apt-get install -y -qq git
@@ -30,3 +22,7 @@ mysql -u $DB_USER -p$DB_PASS < /home/vagrant/shack.sql
 # install node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y -qq nodejs
+
+# Enable node service
+cp /home/vagrant/shack.service /etc/systemd/system/shack.service
+systemctl enable shack.service

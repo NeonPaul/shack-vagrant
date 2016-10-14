@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
     vb.memory = "3072"
   end
   config.vm.provision "file", source: "./shack.sql", destination: "/home/vagrant/shack.sql"
+  config.vm.provision "file", source: "./shack.service", destination: "/home/vagrant/shack.service"
   config.vm.provision "shell", path: "bootstrap.sh"
   config.vm.provision "shell", path: "up.sh", run: "always", privileged: false
 end
