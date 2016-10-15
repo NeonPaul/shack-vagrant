@@ -1,5 +1,5 @@
 # start server
 cd /home/ubuntu/shack
-npm install
+npm install --loglevel=error
 
 systemctl start shack.service
