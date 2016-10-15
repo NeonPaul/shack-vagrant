@@ -1,5 +1,5 @@
 # start server
-cd ~/shack
+cd /home/ubuntu/shack
 npm install
 
-systemctl start nodeserver.service
+systemctl start shack.service

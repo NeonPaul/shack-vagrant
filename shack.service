@@ -1,10 +1,5 @@
 [Service]
-ExecStart="/user/bin/node /home/vagrant/shack/start.js"
-Environment=OPENSHIFT_MYSQL_DB_HOST=localhost
-Environment=DB_USER=root
-Environment=DB_PASS=password
-Environment=NODE_IP=0.0.0.0
-Environment=JWT_SECRET=secret
+ExecStart="/vagrant/start.sh"
 StandardOutput=syslog               # Output to syslog
 StandardError=syslog                # Output to syslog
 SyslogIdentifier=node-shack
