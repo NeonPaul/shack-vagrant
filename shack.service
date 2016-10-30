@@ -1,0 +1,5 @@
+[Service]
+ExecStart="/vagrant/start.sh"
+StandardOutput=syslog               # Output to syslog
+StandardError=syslog                # Output to syslog
+SyslogIdentifier=node-shack
