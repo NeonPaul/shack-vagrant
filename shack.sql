@@ -146,7 +146,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 INSERT INTO `users` (
-  `email`, `password`
+  `email`, `password`, `user`
 ) VALUES(
-  'test@example.com', '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.'
+  'test@example.com',
+  '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.',
+  'TestUser'
 )
