@@ -52,6 +52,24 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11950 ;
 
+INSERT INTO `posts` (
+  `user_id`,
+  `content`,
+  `time`,
+  `bitchingabout`
+) VALUES(
+  '1',
+  'Hello this is a post',
+  '2016-12-15 09:00:00',
+  '0'
+), (
+  '1',
+  'This is an even newer post',
+  '2017-01-11 14:00:12',
+  '0'
+);
+
+
 -- --------------------------------------------------------
 
 --
@@ -146,8 +164,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 INSERT INTO `users` (
-  `email`, `password`, `user`
+  `id`, `email`, `password`, `user`
 ) VALUES(
+  1,
   'test@example.com',
   '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.',
   'TestUser'
