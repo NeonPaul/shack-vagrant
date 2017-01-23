@@ -3,24 +3,33 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.6.15.130:3306
--- Generation Time: Oct 09, 2016 at 05:06 PM
--- Server version: 5.5.50
+-- Generation Time: Jan 23, 2017 at 02:01 PM
+-- Server version: 5.5.52
 -- PHP Version: 5.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `shack`
 --
 CREATE DATABASE IF NOT EXISTS `shack` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `shack`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `channels`
+--
+
+CREATE TABLE IF NOT EXISTS `channels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `data` text NOT NULL COMMENT 'json',
+  `hash` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hash` (`hash`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -50,25 +59,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `pinned` tinyint(1) NOT NULL DEFAULT '0',
   `bitchingabout` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11950 ;
-
-INSERT INTO `posts` (
-  `user_id`,
-  `content`,
-  `time`,
-  `bitchingabout`
-) VALUES(
-  '1',
-  'Hello this is a post',
-  '2016-12-15 09:00:00',
-  '0'
-), (
-  '1',
-  'This is an even newer post',
-  '2017-01-11 14:00:12',
-  '0'
-);
-
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11962 ;
 
 -- --------------------------------------------------------
 
@@ -98,6 +89,45 @@ CREATE TABLE IF NOT EXISTS `response_type` (
   `icon` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE IF NOT EXISTS `subscriptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(25) NOT NULL DEFAULT '',
+  `password` varchar(255) DEFAULT NULL,
+  `passwd` varchar(256) DEFAULT NULL,
+  `auth_type` int(11) DEFAULT '0',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `money` int(11) DEFAULT '10',
+  `joinDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `u_status` smallint(6) DEFAULT '0',
+  `avatar` varchar(255) NOT NULL DEFAULT 'data:image/svg+xml,%3Csvg xmlns=''http://www.w3.org/2000/svg'' viewBox=''0 0 512 512''%3E%3Cpath d=''M224 387.814V512L32 320l192-192v126.912C447.375 260.152 437.794 103.016 380.93 0 521.287 151.707 491.48 394.785 224 387.814z''/%3E%3C/svg%3E',
+  `profile` mediumtext,
+  `login` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user` (`user`),
+  KEY `email` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
 
 -- --------------------------------------------------------
 
@@ -132,42 +162,3 @@ CREATE TABLE IF NOT EXISTS `user_tokens` (
   UNIQUE KEY `uniq_token` (`token`),
   KEY `fk_user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3235 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(25) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL,
-  `passwd` varchar(256) NOT NULL,
-  `auth_type` int(11) NOT NULL DEFAULT '0',
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `money` int(11) NOT NULL DEFAULT '10',
-  `joinDate` date NOT NULL DEFAULT '0000-00-00',
-  `u_status` smallint(6) NOT NULL DEFAULT '0',
-  `avatar` varchar(255) NOT NULL DEFAULT '',
-  `profile` mediumtext NOT NULL,
-  `login` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user` (`user`),
-  KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-INSERT INTO `users` (
-  `id`, `email`, `password`, `user`
-) VALUES(
-  1,
-  'test@example.com',
-  '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.',
-  'TestUser'
-)

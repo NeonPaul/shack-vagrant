@@ -22,6 +22,7 @@ sudo apt-get install -y -qq mysql-server mysql-client
 
 # configure mysql
 mysql -u $DB_USER -p$DB_PASS < /vagrant/shack.sql
+mysql -u $DB_USER -p$DB_PASS < /vagrant/data.sql
 
 # install node
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
