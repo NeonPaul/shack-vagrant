@@ -24,4 +24,9 @@ INSERT INTO `users` (
   'test@example.com',
   '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.',
   'TestUser'
+), (
+ 2,
+ 'test2@example.com',
+ '$2a$08$1OCd5JyotUI6t.nb.2XFc.5.uRIWGSKP4WxD1MKs2C.DmPNRfTG6.',
+ 'TestUser2'
 )

@@ -37,5 +37,5 @@ the machine via ssh, run `vagrant ssh`.
 ## Test data
 The user in the test database has the following credentials:
 
-| **Email**    | `test@example.com` |
-| **password** | `test`             |
+| **Email**    | `test@example.com` | `test2@example.com`
+| **password** | `test`             | `test`
